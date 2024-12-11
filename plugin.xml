@@ -16,8 +16,6 @@
         <clobbers target="window.bluetoothClassicSerial" />
     </js-module>
 
-    <dependency id="cordova-custom-config" version="2.0.3" />
-
     <platform name="android">
 
         <config-file target="res/xml/config.xml" parent="/widget">
@@ -34,7 +32,9 @@
         <config-file target="AndroidManifest.xml" parent="/manifest">
             <uses-permission android:name="android.permission.BLUETOOTH" />
             <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+            <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
             <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+            <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
         </config-file>
 
     </platform>
