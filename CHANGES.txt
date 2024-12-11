@@ -1,4 +1,7 @@
 = 0.9.8 =
+Remoce cordoca-config dependency
+
+= 0.9.8 =
 Fix iOS issue with raw subscribe return II
 
 = 0.9.7 =
