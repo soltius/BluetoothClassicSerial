@@ -29,9 +29,7 @@ Note that this plugin's id changed from 'cordova-plugin-bluetooth-serial' to 'co
 
 ## iOS Notes
 
-iOS requires that the device's protocol string is in the p-list.  This plugin has a dependency on [cordova-custom-config](https://github.com/dpa99c/cordova-custom-config) which enables plist entries to be created from entries the application's cordova config.xml file.
-
-The Phonegap Build service doesn't use this plugin, and instead appears to have it's own method for passing entries into the iOS plist.  Examples below.
+iOS requires that the device's protocol string is in the p-list. 
 
 ### Examples
 
@@ -48,17 +46,6 @@ Replace the text 'first.device.protocol.string' with the protocol string for the
          </array>
     </config-file>
 </platform>
-```
-
-#### Phonegap Build config.xml entry for Supported Accessories
-
-```xml
-<config-file platform="ios" parent="UISupportedExternalAccessoryProtocols">
-    <array>
-        <string>first.device.protocol.string</string>
-         <string>second.device.protocol.string</string>
-    </array>
-</config-file>
 ```
 
 # Examples
