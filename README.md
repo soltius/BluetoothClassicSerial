@@ -1,23 +1,25 @@
 # Bluetooth Classic Serial Plugin for Cordova
 
-This plugin enables serial communication over Bluetooth. It is a fork of https://github.com/don/BluetoothSerial.  The core difference is that https://github.com/don/BluetoothSerial supports Bluetooth Low Energy on iOS.  This plugin is written using the iOS Accessory Framework (MFi) to support Classic Bluetooth on iOS.  Windows Phone 8 Support has been removed in the fork.
+This plugin enables serial communication over Bluetooth. It is a fork of https://github.com/don/BluetoothSerial. The core difference is that https://github.com/don/BluetoothSerial supports Bluetooth Low Energy on iOS. This plugin is written using the iOS Accessory Framework (MFi) to support Classic Bluetooth on iOS. Windows Phone 8 Support has been removed in the fork.
 
-* **Beta Release**
-* **Breaking API Changes from version 0.9.5 'MultiInterface'**
+2025 - Removed the connection back to https://github.com/don/BluetoothSerial as it is no longer maintained and this repository has diverged significantly from that repository.
+
+- **Beta Release**
+- **Breaking API Changes from version 0.9.5 'MultiInterface'**
 
 ## Supported Platforms
 
-* Android
-* iOS (devices must be MFi certified)
-* Browser (Testing only. See [comments](https://github.com/don/BluetoothSerial/blob/master/src/browser/bluetoothSerial.js).)
+- Android
+- iOS (devices must be MFi certified)
+- Browser (Testing only. See [comments](https://github.com/don/BluetoothSerial/blob/master/src/browser/bluetoothSerial.js).)
 
 ## Limitations
 
- * The phone must initiate the Bluetooth connection
- * Will *not* connect Android to Android (https://github.com/don/BluetoothSerial/issues/50#issuecomment-66405396)
- * Will *not* connect iOS to iOS
- * Android Target SDK must be 22 or less.  New Permission model for SDK 23 (Android 6.0) not yet implemented
- * Does not connect to multiple devices, however with 0.9.5 and above multiple interfaces (serial ports) on the same device are supported.
+- The phone must initiate the Bluetooth connection
+- Will _not_ connect Android to Android (https://github.com/don/BluetoothSerial/issues/50#issuecomment-66405396)
+- Will _not_ connect iOS to iOS
+- Android Target SDK must be 22 or less. New Permission model for SDK 23 (Android 6.0) not yet implemented
+- Does not connect to multiple devices, however with 0.9.5 and above multiple interfaces (serial ports) on the same device are supported.
 
 # Installing
 
@@ -29,11 +31,11 @@ Note that this plugin's id changed from 'cordova-plugin-bluetooth-serial' to 'co
 
 ## iOS Notes
 
-iOS requires that the device's protocol string is in the p-list. 
+iOS requires that the device's protocol string is in the p-list.
 
 ### Examples
 
-Replace the text 'first.device.protocol.string' with the protocol string for the Bluetooth accessory you are connecting to. Create a new line for each protocol string.  Some devices may have more than one.  The plugin only allows for connection to one device and one protocol.  If you need to connect to another, disconnect, then connect to the required device and protocol.
+Replace the text 'first.device.protocol.string' with the protocol string for the Bluetooth accessory you are connecting to. Create a new line for each protocol string. Some devices may have more than one. The plugin only allows for connection to one device and one protocol. If you need to connect to another, disconnect, then connect to the required device and protocol.
 
 #### Cordova Command Line config.xml entry for Supported Accessories
 
@@ -83,35 +85,36 @@ Connect to a Bluetooth device.
 
 ### Description
 
-Function `connect` connects to a Bluetooth device.  The callback is long running.  Success will be called when the connection is successful.  Failure is called if the connection fails, or later if the connection disconnects. An error message is passed to the failure callback.  If a device has multiple interfaces then you can connect to them by providind the inteface Ids.
+Function `connect` connects to a Bluetooth device. The callback is long running. Success will be called when the connection is successful. Failure is called if the connection fails, or later if the connection disconnects. An error message is passed to the failure callback. If a device has multiple interfaces then you can connect to them by providind the inteface Ids.
 
 ### Parameters
 
-- __connectSuccess__: Success callback function that is invoked when the connection is successful.
-- __connectFailure__: Error callback function, invoked when error occurs or the connection disconnects.
+- **connectSuccess**: Success callback function that is invoked when the connection is successful.
+- **connectFailure**: Error callback function, invoked when error occurs or the connection disconnects.
 
 #### Android
 
-- __deviceId__: Identifier of the remote device. For Android this is the MAC address.
-- __interfaceIdArray__: This identifies the serial port to connect to. For Android this is the SPP_UUID. A common SPP_UUID string is "00001101-0000-1000-8000-00805F9B34FB".  The device doumentation should provide the SPP_UUID.
+- **deviceId**: Identifier of the remote device. For Android this is the MAC address.
+- **interfaceIdArray**: This identifies the serial port to connect to. For Android this is the SPP_UUID. A common SPP_UUID string is "00001101-0000-1000-8000-00805F9B34FB". The device doumentation should provide the SPP_UUID.
 
 #### iOS
 
-- __deviceId__: For iOS this is the connection ID
-- __interfaceIdArray__: This identifies the serial port to connect to. For iOS the interfaceId is the Protocol String. The Protocol String must be one of those specified in your config.xml.
+- **deviceId**: For iOS this is the connection ID
+- **interfaceIdArray**: This identifies the serial port to connect to. For iOS the interfaceId is the Protocol String. The Protocol String must be one of those specified in your config.xml.
 
 For iOS, `connect` takes the ConnectionID as the deviceID, and the Protocol String as the interfaceId.
 
 ## connectInsecure
 
 Connect insecurely to a Bluetooth device.
+
 ```
 bluetoothClassicSerial.connectInsecure(deviceId, interfaceIdArray, connectSuccess, connectFailure);
 ```
 
 ### Description
 
-Function `connectInsecure` works like [connect](#connect), but creates an insecure connection to a Bluetooth device.  See the [Android docs](http://goo.gl/1mFjZY) for more information.
+Function `connectInsecure` works like [connect](#connect), but creates an insecure connection to a Bluetooth device. See the [Android docs](http://goo.gl/1mFjZY) for more information.
 
 #### Android
 
@@ -123,12 +126,13 @@ For Android, see [connect](#connect).
 
 ### Parameters
 
-- __deviceId__: Identifier of the remote device. For Android this is the MAC address.
-- __interfaceIdArray__: This identifies the serial port to connect to. For Android this is the SPP_UUID. A common SPP_UUID string is "00001101-0000-1000-8000-00805F9B34FB".  The device documentation should provide the SPP_UUID.
-- __connectSuccess__: Success callback function that is invoked when the connection is successful.
-- __connectFailure__: Error callback function, invoked when error occurs or the connection disconnects.
+- **deviceId**: Identifier of the remote device. For Android this is the MAC address.
+- **interfaceIdArray**: This identifies the serial port to connect to. For Android this is the SPP_UUID. A common SPP_UUID string is "00001101-0000-1000-8000-00805F9B34FB". The device documentation should provide the SPP_UUID.
+- **connectSuccess**: Success callback function that is invoked when the connection is successful.
+- **connectFailure**: Error callback function, invoked when error occurs or the connection disconnects.
 
 ## disconnect
+
 ```
 bluetoothClassicSerial.disconnect(success, failure);
 ```
@@ -139,12 +143,13 @@ Function `disconnect` disconnects the current connection.
 
 ### Parameters
 
-- __success__: Success callback function that is invoked when the connection is successful. [optional]
-- __failure__: Error callback function, invoked when error occurs. [optional]
+- **success**: Success callback function that is invoked when the connection is successful. [optional]
+- **failure**: Error callback function, invoked when error occurs. [optional]
 
 ## write
 
 Writes data to the serial port.
+
 ```
 bluetoothClassicSerial.write(interfaceId, data, success, failure);
 ```
@@ -157,12 +162,13 @@ Internally string, integer array, and Uint8Array are converted to an ArrayBuffer
 
 ### Parameters
 
-- __interfaceId__: The interface to send the data to
-- __data__: ArrayBuffer of data
-- __success__: Success callback function that is invoked when the connection is successful. [optional]
-- __failure__: Error callback function, invoked when error occurs. [optional]
+- **interfaceId**: The interface to send the data to
+- **data**: ArrayBuffer of data
+- **success**: Success callback function that is invoked when the connection is successful. [optional]
+- **failure**: Error callback function, invoked when error occurs. [optional]
 
 ### Quick Example
+
 ```
 // string
 bluetoothClassicSerial.write("00001101-0000-1000-8000-00805F9B34FB", "hello, world", success, failure);
@@ -185,13 +191,14 @@ bluetoothClassicSerial.write(interfaceId, data.buffer, success, failure);
 ## available
 
 Gets the number of bytes of data available.
+
 ```
 bluetoothClassicSerial.available(interfaceId, success, failure);
 ```
 
 ### Description
 
-Function `available` gets the number of bytes of data available.  The bytes are passed as a parameter to the success callback.
+Function `available` gets the number of bytes of data available. The bytes are passed as a parameter to the success callback.
 
 #### iOS
 
@@ -199,11 +206,12 @@ Function `available` gets the number of bytes of data available.  The bytes are 
 
 ### Parameters
 
-- __interfaceId__: The interface to check
-- __success__: Success callback function that is invoked when the connection is successful. [optional]
-- __failure__: Error callback function, invoked when error occurs. [optional]
+- **interfaceId**: The interface to check
+- **success**: Success callback function that is invoked when the connection is successful. [optional]
+- **failure**: Error callback function, invoked when error occurs. [optional]
 
 ### Quick Example
+
 ```
 bluetoothClassicSerial.available("00001101-0000-1000-8000-00805F9B34FB", function (numBytes) { console.log("There are " + numBytes + " available to read."); }, failure);
 ```
@@ -211,24 +219,27 @@ bluetoothClassicSerial.available("00001101-0000-1000-8000-00805F9B34FB", functio
 ## read
 
 Reads data from the buffer.
+
 ```
 bluetoothClassicSerial.read(interfaceId, success, failure);
 ```
 
 ### Description
 
-Function `read` reads the data from the buffer. The data is passed to the success callback as a String.  Calling `read` when no data is available will pass an empty String to the callback.
+Function `read` reads the data from the buffer. The data is passed to the success callback as a String. Calling `read` when no data is available will pass an empty String to the callback.
 
 ### Parameters
 
-- __interfaceId__: The interface to read
-- __success__: Success callback function that is invoked with the number of bytes available to be read.
-- __failure__: Error callback function, invoked when error occurs. [optional]
+- **interfaceId**: The interface to read
+- **success**: Success callback function that is invoked with the number of bytes available to be read.
+- **failure**: Error callback function, invoked when error occurs. [optional]
 
 ### Quick Example
+
 ```
 bluetoothClassicSerial.read("00001101-0000-1000-8000-00805F9B34FB", function (data) { console.log(data);}, failure);
 ```
+
 ## readUntil
 
 Reads data from the buffer until it reaches a delimiter.
@@ -237,16 +248,17 @@ Reads data from the buffer until it reaches a delimiter.
 
 ### Description
 
-Function `readUntil` reads the data from the buffer until it reaches a delimiter.  The data is passed to the success callback as a String.  If the buffer does not contain the delimiter, an empty String is passed to the callback. Calling `read` when no data is available will pass an empty String to the callback.
+Function `readUntil` reads the data from the buffer until it reaches a delimiter. The data is passed to the success callback as a String. If the buffer does not contain the delimiter, an empty String is passed to the callback. Calling `read` when no data is available will pass an empty String to the callback.
 
 ### Parameters
 
-- __interfaceId__: The interface to read
-- __delimiter__: delimiter
-- __success__: Success callback function that is invoked with the data.
-- __failure__: Error callback function, invoked when error occurs. [optional]
+- **interfaceId**: The interface to read
+- **delimiter**: delimiter
+- **success**: Success callback function that is invoked with the data.
+- **failure**: Error callback function, invoked when error occurs. [optional]
 
 ### Quick Example
+
 ```
 bluetoothClassicSerial.readUntil("00001101-0000-1000-8000-00805F9B34FB", '\n', function (data) {console.log(data);}, failure);
 ```
@@ -259,16 +271,17 @@ Subscribe to be notified when data is received.
 
 ### Description
 
-Function `subscribe` registers a callback that is called when data is received.  A delimiter must be specified.  The callback is called with the data as soon as the delimiter string is read.  The callback is a long running callback and will exist until `unsubscribe` is called.
+Function `subscribe` registers a callback that is called when data is received. A delimiter must be specified. The callback is called with the data as soon as the delimiter string is read. The callback is a long running callback and will exist until `unsubscribe` is called.
 
 ### Parameters
 
-- __interfaceId__: The interface to subscribe to
-- __delimiter__: delimiter
-- __success__: Success callback function that is invoked with the data.
-- __failure__: Error callback function, invoked when error occurs. [optional]
+- **interfaceId**: The interface to subscribe to
+- **delimiter**: delimiter
+- **success**: Success callback function that is invoked with the data.
+- **failure**: Error callback function, invoked when error occurs. [optional]
 
 ### Quick Example
+
 ```
 // the success callback is called whenever data is received
 bluetoothClassicSerial.subscribe("00001101-0000-1000-8000-00805F9B34FB", '\n', function (data) {
@@ -288,9 +301,9 @@ Function `unsubscribe` removes any notification added by `subscribe` and kills t
 
 ### Parameters
 
-- __interfaceId__: The interface to unsubscribe from
-- __success__: Success callback function that is invoked when the connection is successful. [optional]
-- __failure__: Error callback function, invoked when error occurs. [optional]
+- **interfaceId**: The interface to unsubscribe from
+- **success**: Success callback function that is invoked when the connection is successful. [optional]
+- **failure**: Error callback function, invoked when error occurs. [optional]
 
 ### Quick Example
 
@@ -308,11 +321,12 @@ Function `subscribeRawData` registers a callback that is called when data is rec
 
 ### Parameters
 
-- __interfaceId__: The interface to subscribe to
-- __success__: Success callback function that is invoked with the data.
-- __failure__: Error callback function, invoked when error occurs. [optional]
+- **interfaceId**: The interface to subscribe to
+- **success**: Success callback function that is invoked with the data.
+- **failure**: Error callback function, invoked when error occurs. [optional]
 
 ### Quick Example
+
 ```
 // the success callback is called whenever data is received
 bluetoothClassicSerial.subscribeRawData(function (data) {
@@ -333,11 +347,12 @@ Function `unsubscribeRawData` removes any notification added by `subscribeRawDat
 
 ### Parameters
 
-- __interfaceId__: The interface to unsubscribe from
-- __success__: Success callback function that is invoked when the unsubscribe is successful. [optional]
-- __failure__: Error callback function, invoked when error occurs. [optional]
+- **interfaceId**: The interface to unsubscribe from
+- **success**: Success callback function that is invoked when the unsubscribe is successful. [optional]
+- **failure**: Error callback function, invoked when error occurs. [optional]
 
 ### Quick Example
+
 ```
 bluetoothClassicSerial.unsubscribeRawData("00001101-0000-1000-8000-00805F9B34FB");
 ```
@@ -354,8 +369,8 @@ Function `clear` removes any data from the receive buffer.
 
 ### Parameters
 
-- __success__: Success callback function that is invoked when the connection is successful. [optional]
-- __failure__: Error callback function, invoked when error occurs. [optional]
+- **success**: Success callback function that is invoked when the connection is successful. [optional]
+- **failure**: Error callback function, invoked when error occurs. [optional]
 
 ## list
 
@@ -367,9 +382,9 @@ Lists bonded devices
 
 #### Android
 
-Function `list` lists the paired Bluetooth devices.  The success callback is called with a list of objects.
+Function `list` lists the paired Bluetooth devices. The success callback is called with a list of objects.
 
-Example list passed to success callback.  See [BluetoothDevice](http://developer.android.com/reference/android/bluetooth/BluetoothDevice.html#getName\(\)) and [BluetoothClass#getDeviceClass](http://developer.android.com/reference/android/bluetooth/BluetoothClass.html#getDeviceClass\(\)).
+Example list passed to success callback. See [BluetoothDevice](<http://developer.android.com/reference/android/bluetooth/BluetoothDevice.html#getName()>) and [BluetoothClass#getDeviceClass](<http://developer.android.com/reference/android/bluetooth/BluetoothClass.html#getDeviceClass()>).
 
     [{
         "class": 276,
@@ -385,7 +400,7 @@ Example list passed to success callback.  See [BluetoothDevice](http://developer
 
 #### iOS
 
-Function `list` lists the paired Bluetooth devices.  The success callback is called with a list of objects.
+Function `list` lists the paired Bluetooth devices. The success callback is called with a list of objects.
 
 Example list passed to success callback for iOS.
 
@@ -397,10 +412,11 @@ Example list passed to success callback for iOS.
 
 ### Parameters
 
-- __success__: Success callback function that is invoked with a list of bonded devices.
-- __failure__: Error callback function, invoked when error occurs. [optional]
+- **success**: Success callback function that is invoked with a list of bonded devices.
+- **failure**: Error callback function, invoked when error occurs. [optional]
 
 ### Quick Example
+
 ```
 bluetoothClassicSerial.list(function(devices) {
     devices.forEach(function(device) {
@@ -411,20 +427,21 @@ bluetoothClassicSerial.list(function(devices) {
 
 ## isConnected
 
-Reports the connection status.  If all interfaces are connected then the success callback is called.  If one interface is not connected then the failure callback is called.  The connect method does not allow the status of a single interface to be determined (unless you have only specified a single interfaceId in the prior connect method).
+Reports the connection status. If all interfaces are connected then the success callback is called. If one interface is not connected then the failure callback is called. The connect method does not allow the status of a single interface to be determined (unless you have only specified a single interfaceId in the prior connect method).
 
     bluetoothClassicSerial.isConnected(success, failure);
 
 ### Description
 
-Function `isConnected` calls the success callback when connected to a peer and the failure callback when *not* connected.
+Function `isConnected` calls the success callback when connected to a peer and the failure callback when _not_ connected.
 
 ### Parameters
 
-- __success__: Success callback function, invoked when device connected.
-- __failure__: Error callback function, invoked when device is NOT connected.
+- **success**: Success callback function, invoked when device connected.
+- **failure**: Error callback function, invoked when device is NOT connected.
 
 ### Quick Example
+
 ```
 bluetoothClassicSerial.isConnected(
     function() {
@@ -444,14 +461,15 @@ Reports if bluetooth is enabled.
 
 ### Description
 
-Function `isEnabled` calls the success callback when bluetooth is enabled and the failure callback when bluetooth is *not* enabled.
+Function `isEnabled` calls the success callback when bluetooth is enabled and the failure callback when bluetooth is _not_ enabled.
 
 ### Parameters
 
-- __success__: Success callback function, invoked when Bluetooth is enabled.
-- __failure__: Error callback function, invoked when Bluetooth is NOT enabled.
+- **success**: Success callback function, invoked when Bluetooth is enabled.
+- **failure**: Error callback function, invoked when Bluetooth is NOT enabled.
 
 ### Quick Example
+
 ```
 bluetoothClassicSerial.isEnabled(
     function() {
@@ -479,10 +497,11 @@ Function `showBluetoothSettings` opens the Bluetooth settings on the operating s
 
 ### Parameters
 
-- __success__: Success callback function [optional]
-- __failure__: Error callback function, invoked when error occurs. [optional]
+- **success**: Success callback function [optional]
+- **failure**: Error callback function, invoked when error occurs. [optional]
 
 ### Quick Example
+
 ```
 bluetoothClassicSerial.showBluetoothSettings();
 ```
@@ -507,10 +526,11 @@ If `enable` is called when Bluetooth is already enabled, the user will not promp
 
 ### Parameters
 
-- __success__: Success callback function, invoked if the user enabled Bluetooth.
-- __failure__: Error callback function, invoked if the user does not enabled Bluetooth.
+- **success**: Success callback function, invoked if the user enabled Bluetooth.
+- **failure**: Error callback function, invoked if the user does not enabled Bluetooth.
 
 ### Quick Example
+
 ```
 bluetoothClassicSerial.enable(
     function() {
@@ -537,6 +557,7 @@ The behaviour of this method varies between Android and iOS.
 Function `discoverUnpaired` discovers unpaired Bluetooth devices. The success callback is called with a list of objects similar to `list`, or an empty list if no unpaired devices are found.
 
 Example list passed to success callback.
+
 ```
 [{
     "class": 276,
@@ -558,14 +579,15 @@ Calling `connect` on an unpaired Bluetooth device should begin the Android pairi
 
 #### iOS
 
-Function `discoverUnpaired` will launch a native iOS window showing all devices which match the protocol string defined in the application's cordova config.xml file.  Choosing a device from the list will initiate pairing and the details of that device will **not** trigger the success callback function. **The device discovered listener must be used**. Once paired the device is available for connection.
+Function `discoverUnpaired` will launch a native iOS window showing all devices which match the protocol string defined in the application's cordova config.xml file. Choosing a device from the list will initiate pairing and the details of that device will **not** trigger the success callback function. **The device discovered listener must be used**. Once paired the device is available for connection.
 
 ### Parameters
 
-- __success__: Success callback function that is invoked with a list of unpaired devices.
-- __failure__: Error callback function, invoked when error occurs. [optional]
+- **success**: Success callback function that is invoked with a list of unpaired devices.
+- **failure**: Error callback function, invoked when error occurs. [optional]
 
 ### Quick Example
+
 ```
 bluetoothClassicSerial.discoverUnpaired(function(devices) {
     devices.forEach(function(device) {
@@ -587,6 +609,7 @@ be started with [discoverUnpaired](#discoverunpaired).
 There can be only one registered callback.
 
 Example object passed to notify callback.
+
 ```
 {
     "class": 276,
@@ -598,13 +621,14 @@ Example object passed to notify callback.
 
 #### iOS
 
-When a device is paired from the [discoverUnpaired](#discoverunpaired) function it's details will be passed to the callback function.  Unlike Android this will only be fired once for the selected device, not for all the available devices.
+When a device is paired from the [discoverUnpaired](#discoverunpaired) function it's details will be passed to the callback function. Unlike Android this will only be fired once for the selected device, not for all the available devices.
 
 ### Parameters
 
-- __notify__: Notify callback function that is invoked when device is discovered during discovery process.
+- **notify**: Notify callback function that is invoked when device is discovered during discovery process.
 
 ### Quick Example
+
 ```
 bluetoothClassicSerial.setDeviceDiscoveredListener(function(device) {
   console.log('Found: ',device.id);
@@ -616,6 +640,7 @@ bluetoothClassicSerial.setDeviceDiscoveredListener(function(device) {
 Clears notify callback function registered with [setDeviceDiscoveredListener](#setdevicediscoveredlistener).
 
 ### Quick Example
+
 ```
 bluetoothClassicSerial.clearDeviceDiscoveredListener();
 ```
@@ -627,15 +652,17 @@ bluetoothClassicSerial.clearDeviceDiscoveredListener();
 ### Android
 
 Development Devices include
- * Nexus 7 (2013) with Android 6.1
- * Samsung Galaxy S6 with Android 6.0
- * Samsung Galaxy S5 with Android 5.0
+
+- Nexus 7 (2013) with Android 6.1
+- Samsung Galaxy S6 with Android 6.0
+- Samsung Galaxy S5 with Android 5.0
 
 ### iOS
 
 Development Devices include
-  * iPhone 5s
-  * iPad Gen 4
+
+- iPhone 5s
+- iPad Gen 4
 
 ## Props
 
@@ -664,6 +691,7 @@ If you need BLE for RFduino checkout Don Colemans's [RFduino Plugin](https://git
 For Windows Phone 8 support see the original project, Don Coleman's [Cordova BluetoothSerial Plugin](https://github.com/don/BluetoothSerial)
 
 ## What format should the Mac Address be in?
+
 An example a properly formatted mac address is "AA:BB:CC:DD:EE:FF"
 
 ## Feedback
